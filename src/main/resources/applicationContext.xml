@@ -12,9 +12,13 @@
     <!--    <bean id="userDao" class="com.lionlemon.dao.impl.UserDaoImpl"/>-->
     <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao"/>
     <!--    <bean id="factory" class="com.lionlemon.factory.DynamicFactory" />-->
-    <!--    <bean id="userDao" factory-bean="factory"  factory-method="getUserDao"/>-->
+    <!--    <bean id="userDao -> Set方法后面的属性名" factory-bean="factory"  factory-method="getUserDao"/>-->
+    <!--    <bean id="userService" class="com.lionlemon.service.impl.UserServiceImpl">-->
+    <!--        <property name="userDao" ref="userDao"/>-->
+    <!--    </bean>-->
     <bean id="userService" class="com.lionlemon.service.impl.UserServiceImpl">
-        <property name="userDao" ref="userDao"/>
+        <!--        第一个userDao是代参构造的参数名 第二个是容器中bean的id名-->
+        <constructor-arg name="userDao" ref="userDao"/>
     </bean>
 
 </beans>
