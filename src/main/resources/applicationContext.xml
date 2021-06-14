@@ -10,7 +10,11 @@
     <!-- xmlns:context="http://www.springframework.org/schema/context"-->
     <!-- xmlns:aop="http://www.springframework.org/schema/aop" -->
     <!--    <bean id="userDao" class="com.lionlemon.dao.impl.UserDaoImpl"/>-->
-    <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao"/>
+    <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao">
+        <!-- 注入string 和 int 的value -->
+        <property name="username" value="xiaozhuzhu"/>
+        <property name="age" value="12"/>
+    </bean>
     <!--    <bean id="factory" class="com.lionlemon.factory.DynamicFactory" />-->
     <!--    <bean id="userDao -> Set方法后面的属性名" factory-bean="factory"  factory-method="getUserDao"/>-->
     <!--    <bean id="userService" class="com.lionlemon.service.impl.UserServiceImpl">-->
