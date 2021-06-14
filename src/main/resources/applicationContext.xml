@@ -10,5 +10,7 @@
     <!-- xmlns:context="http://www.springframework.org/schema/context"-->
     <!-- xmlns:aop="http://www.springframework.org/schema/aop" -->
     <!--    <bean id="userDao" class="com.lionlemon.dao.impl.UserDaoImpl"  />-->
-    <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao"/>
+    <!--    <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao"/>-->
+    <bean id="factory" class="com.lionlemon.factory.DynamicFactory" />
+    <bean id="userDao" factory-bean="factory"  factory-method="getUserDao"/>
 </beans>
