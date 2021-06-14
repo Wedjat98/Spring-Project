@@ -10,16 +10,46 @@
     <!-- xmlns:context="http://www.springframework.org/schema/context"-->
     <!-- xmlns:aop="http://www.springframework.org/schema/aop" -->
     <!--    <bean id="userDao" class="com.lionlemon.dao.impl.UserDaoImpl"/>-->
-    <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao">
-        <!-- 注入string 和 int 的value -->
-        <property name="username" value="xiaozhuzhu"/>
-        <property name="age" value="12"/>
-    </bean>
+    <!--    <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao">-->
+    <!--        &lt;!&ndash; 注入string 和 int 的value &ndash;&gt;-->
+    <!--        <property name="username" value="xiaozhuzhu"/>-->
+    <!--        <property name="age" value="12"/>-->
+    <!--    </bean>-->
     <!--    <bean id="factory" class="com.lionlemon.factory.DynamicFactory" />-->
     <!--    <bean id="userDao -> Set方法后面的属性名" factory-bean="factory"  factory-method="getUserDao"/>-->
     <!--    <bean id="userService" class="com.lionlemon.service.impl.UserServiceImpl">-->
     <!--        <property name="userDao" ref="userDao"/>-->
     <!--    </bean>-->
+    <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao">
+        <property name="stringList">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="p1">pppppppp1</prop>
+                <prop key="p2">pppppppp2</prop>
+                <prop key="p3">pppppppp3</prop>
+            </props>
+        </property>
+        <property name="userMap">
+            <map>
+                <entry key="user1" value-ref="user1"></entry>
+                <entry key="user2" value-ref="user1"></entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="user1" class="com.lionlemon.domain.User">
+        <property name="name" value="xiaozhuzhu"/>
+        <property name="address" value="beijing"/>
+    </bean>
+    <bean id="user2" class="com.lionlemon.domain.User">
+        <property name="name" value="huaizhuzhu"/>
+        <property name="address" value="tianjin"/>
+    </bean>
     <bean id="userService" class="com.lionlemon.service.impl.UserServiceImpl">
         <!--        第一个userDao是代参构造的参数名 第二个是容器中bean的id名-->
         <constructor-arg name="userDao" ref="userDao"/>
