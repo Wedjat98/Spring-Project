@@ -20,28 +20,7 @@
     <!--    <bean id="userService" class="com.lionlemon.service.impl.UserServiceImpl">-->
     <!--        <property name="userDao" ref="userDao"/>-->
     <!--    </bean>-->
-    <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao">
-        <property name="stringList">
-            <list>
-                <value>aaa</value>
-                <value>bbb</value>
-                <value>ccc</value>
-            </list>
-        </property>
-        <property name="properties">
-            <props>
-                <prop key="p1">pppppppp1</prop>
-                <prop key="p2">pppppppp2</prop>
-                <prop key="p3">pppppppp3</prop>
-            </props>
-        </property>
-        <property name="userMap">
-            <map>
-                <entry key="user1" value-ref="user1"></entry>
-                <entry key="user2" value-ref="user1"></entry>
-            </map>
-        </property>
-    </bean>
+
     <bean id="user1" class="com.lionlemon.domain.User">
         <property name="name" value="xiaozhuzhu"/>
         <property name="address" value="beijing"/>
@@ -50,9 +29,8 @@
         <property name="name" value="huaizhuzhu"/>
         <property name="address" value="tianjin"/>
     </bean>
-    <bean id="userService" class="com.lionlemon.service.impl.UserServiceImpl">
-        <!--        第一个userDao是代参构造的参数名 第二个是容器中bean的id名-->
-        <constructor-arg name="userDao" ref="userDao"/>
-    </bean>
+
+    <import resource="applicationContext-dao.xml"/>
+    <import resource="applicationContext-service.xml"/>
 
 </beans>

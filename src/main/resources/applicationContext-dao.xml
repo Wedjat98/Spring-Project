@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao">
+        <property name="stringList">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="p1">pppppppp1</prop>
+                <prop key="p2">pppppppp2</prop>
+                <prop key="p3">pppppppp3</prop>
+            </props>
+        </property>
+        <property name="userMap">
+            <map>
+                <entry key="user1" value-ref="user1"/>
+                <entry key="user2" value-ref="user1"/>
+            </map>
+        </property>
+    </bean>
+</beans>
