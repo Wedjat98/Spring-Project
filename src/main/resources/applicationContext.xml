@@ -13,5 +13,8 @@
     <bean id="userDao" class="com.lionlemon.factory.StaticFactory" factory-method="getUserDao"/>
     <!--    <bean id="factory" class="com.lionlemon.factory.DynamicFactory" />-->
     <!--    <bean id="userDao" factory-bean="factory"  factory-method="getUserDao"/>-->
-    <bean id="userService" class="com.lionlemon.service.impl.UserServiceImpl"/>
+    <bean id="userService" class="com.lionlemon.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
 </beans>
