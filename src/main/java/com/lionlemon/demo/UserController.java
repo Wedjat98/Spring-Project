@@ -12,5 +12,6 @@ public class UserController {
         UserService userService = (UserService) applicationContext.getBean("userService");
         //字节码文件获取 只限于一个实现类的单个对象 多个对象时会报错
         userService.save();
+
     }
 }
