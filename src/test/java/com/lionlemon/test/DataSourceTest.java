@@ -3,7 +3,10 @@ package com.lionlemon.test;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.util.ResourceBundle;
@@ -51,6 +54,26 @@ public class DataSourceTest {
         druidDataSource.setUsername("root");
         druidDataSource.setPassword("admin");
         Connection connection = druidDataSource.getConnection();
+        System.out.println(connection);
+        connection.close();
+    }
+    @Test
+    //测试spring容器产生的c3p0数据源对象
+    public void test4() throws Exception {
+        ApplicationContext applicationContext =new ClassPathXmlApplicationContext("applicationContext.xml");
+        DataSource dataSource = applicationContext.getBean(DataSource.class);
+        Connection connection =dataSource.getConnection();
+        //暂时不去真正操作数据库
+        System.out.println(connection);
+        connection.close();
+    }
+    @Test
+    //测试spring容器产生的druid数据源对象
+    public void test5() throws Exception {
+        ApplicationContext applicationContext =new ClassPathXmlApplicationContext("applicationContext.xml");
+        DataSource dataSource = applicationContext.getBean(DruidDataSource.class);
+        Connection connection =dataSource.getConnection();
+        //暂时不去真正操作数据库
         System.out.println(connection);
         connection.close();
     }
