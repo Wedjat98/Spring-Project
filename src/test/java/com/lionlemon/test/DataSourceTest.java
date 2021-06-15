@@ -61,7 +61,7 @@ public class DataSourceTest {
     //测试spring容器产生的c3p0数据源对象
     public void test4() throws Exception {
         ApplicationContext applicationContext =new ClassPathXmlApplicationContext("applicationContext.xml");
-        DataSource dataSource = applicationContext.getBean(DataSource.class);
+        DataSource dataSource = (DataSource) applicationContext.getBean("dataSource");
         Connection connection =dataSource.getConnection();
         //暂时不去真正操作数据库
         System.out.println(connection);
